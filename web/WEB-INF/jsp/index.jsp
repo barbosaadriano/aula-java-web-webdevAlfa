@@ -23,6 +23,15 @@
                         <li>
                             <a href="cadastrarConta">Cadastro Conta</a>
                         </li>
+                        <li>
+                            <a href="movimentarConta">Movimentar Conta</a>
+                        </li>
+                        <li>
+                            <a href="imprimirExtrato">Extrato</a>
+                        </li>
+                        <li>
+                            <a href="encerrarSessao">Sair</a>
+                        </li>
                     </ul>
                 </div>
             </div>

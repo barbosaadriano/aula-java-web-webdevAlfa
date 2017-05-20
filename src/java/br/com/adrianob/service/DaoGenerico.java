@@ -49,12 +49,12 @@ public class DaoGenerico {
         em.getTransaction().commit();
     }
 
-    public List listar(String sql, Map<String, String> p) {
+    public List listar(String sql, Map<String, Object> p) {
         Query qry = em.createQuery(sql);
         if (p.size() > 0) {
-            Iterator<Map.Entry<String, String>> it = p.entrySet().iterator();
+            Iterator<Map.Entry<String, Object>> it = p.entrySet().iterator();
             while (it.hasNext()) {
-                Map.Entry<String, String> next = it.next();
+                Map.Entry<String, Object> next = it.next();
                 qry.setParameter(next.getKey(), next.getValue());
             }
         }

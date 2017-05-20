@@ -24,4 +24,5 @@
 
     <bean id="conta" class="br.com.adrianob.modelo.Conta"/>
     <bean id="pessoa" class="br.com.adrianob.modelo.Pessoa"/>
+    <bean id="transacao" class="br.com.adrianob.modelo.Transacao"/>
 </beans>

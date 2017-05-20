@@ -4,7 +4,6 @@ import br.com.adrianob.modelo.Conta;
 import br.com.adrianob.modelo.Pessoa;
 import br.com.adrianob.service.DaoGenerico;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MeuController {
 
     @RequestMapping("/inicio")
-    public String index() {
+    public String index(HttpSession session) {
+        if (session.getAttribute("usuarioLogado") == null) {
+            return "login/form";
+        }
         return "index";
     }
 
@@ -26,7 +28,9 @@ public class MeuController {
 
     @RequestMapping("/cadastrarConta")
     public String cadastroConta(HttpSession session) {
-        List<Pessoa> pessoas = DaoGenerico.getInstance().listar("Select p from br.com.adrianob.modelo.Pessoa p ", new HashMap<String, String>());
+        Pessoa p = (Pessoa) session.getAttribute("usuarioLogado");
+        List<Pessoa> pessoas = new ArrayList<Pessoa>();
+        pessoas.add(p);
         session.setAttribute("pessoas", pessoas);
         return "contas/cadastroConta";
     }
@@ -36,6 +40,7 @@ public class MeuController {
         List<Pessoa> lista = new ArrayList<Pessoa>();
         lista.add(p);
         DaoGenerico.getInstance().salvarOuRemover(lista, DaoGenerico.SALVAR);
+        DaoGenerico.getInstance().closeEm();
         session.setAttribute("pessoa", p);
         return "pessoas/salvo";
     }
@@ -48,6 +53,7 @@ public class MeuController {
         List<Conta> lista = new ArrayList<Conta>();
         lista.add(c);
         DaoGenerico.getInstance().salvarOuRemover(lista, DaoGenerico.SALVAR);
+        DaoGenerico.getInstance().closeEm();
         s.setAttribute("conta", c);
         return "contas/salvo";
     }
