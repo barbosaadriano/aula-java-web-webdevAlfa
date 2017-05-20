@@ -16,7 +16,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="cadastrarAlguem" class="btn btn-default">aqui</a>
+                    <ul>
+                        <li>
+                            <a href="cadastrarAlguem">Cadastro Pessoa</a>
+                        </li>
+                        <li>
+                            <a href="cadastrarConta">Cadastro Conta</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
