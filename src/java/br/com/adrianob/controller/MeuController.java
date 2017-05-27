@@ -15,9 +15,9 @@ public class MeuController {
 
     @RequestMapping("/inicio")
     public String index(HttpSession session) {
-        if (session.getAttribute("usuarioLogado") == null) {
-            return "login/form";
-        }
+//        if (session.getAttribute("usuarioLogado") == null) {
+//            return "login/form";
+//        }
         return "index";
     }
 

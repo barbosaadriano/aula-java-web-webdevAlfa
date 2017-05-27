@@ -27,7 +27,7 @@
                             <a href="movimentarConta">Movimentar Conta</a>
                         </li>
                         <li>
-                            <a href="imprimirExtrato">Extrato</a>
+                            <a href="extrato">Extrato</a>
                         </li>
                         <li>
                             <a href="encerrarSessao">Sair</a>

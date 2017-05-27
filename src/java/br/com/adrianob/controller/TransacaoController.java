@@ -65,15 +65,32 @@ public class TransacaoController {
         return "transacao/comprovante";
     }
 
-    @RequestMapping("/imprimirExtrato")
-    public String extrato(HttpSession session) {
+    @RequestMapping("/extrato")
+    public String preparaExtrato(HttpSession session) {
         Pessoa usu = (Pessoa) session.getAttribute("usuarioLogado");
+        StringBuilder sql = new StringBuilder("Select c from br.com.adrianob.modelo.Conta c ");
+        sql.append(" where c.titular = :titular");
+        Map<String, Object> par = new HashMap<String, Object>();
+        par.put("titular", usu);
+        List<Conta> contas = DaoGenerico.getInstance().listar(sql.toString(),
+                par);
+        DaoGenerico.getInstance().closeEm();
+        session.setAttribute("contas", contas);
+        return "transacao/preparaExtrato";
+    }
+
+    @RequestMapping("/imprimirExtrato")
+    public String extrato(HttpSession s, HttpServletRequest r) {
+        int idx = Integer.parseInt(r.getParameter("conta_id"));
+        ArrayList<Conta> lst = (ArrayList<Conta>) s.getAttribute("contas");
+        Conta conta = lst.get(idx);
+        Pessoa usu = (Pessoa) s.getAttribute("usuarioLogado");
         StringBuilder sql = new StringBuilder("Select t from br.com.adrianob.modelo.Transacao t ");
         sql.append(" where t.conta in ( :conta )");
         Map<String, Object> par = new HashMap<String, Object>();
-        par.put("conta", usu.getContas());
+        par.put("conta", conta);
         List<Transacao> transacoes = DaoGenerico.getInstance().listar(sql.toString(), par);
-        session.setAttribute("textrato", transacoes);
+        s.setAttribute("textrato", transacoes);
         return "transacao/extrato";
     }
 }

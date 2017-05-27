@@ -22,6 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
+    @RequestMapping("/logar")
+    public String telaDeLogin() {
+        return "login/form";
+    }
+
     @RequestMapping("/validarLogin")
     public String validar(HttpSession s, HttpServletRequest r) {
         String login = r.getParameter("login");
