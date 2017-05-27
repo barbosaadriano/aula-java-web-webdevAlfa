@@ -4,6 +4,7 @@ import br.com.adrianob.modelo.Conta;
 import br.com.adrianob.modelo.Pessoa;
 import br.com.adrianob.service.DaoGenerico;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,18 +19,40 @@ public class MeuController {
         return "index";
     }
 
+    @RequestMapping("/")
+    public String begin() {
+        return "redirect:inicio";
+    }
+
     @RequestMapping("/cadastrarAlguem")
-    public String cadastro() {
+    public String cadastro(HttpSession session) {
+        List<Pessoa> lista = DaoGenerico.getInstance().listar("Select p from br.com.adrianob.modelo.Pessoa p",
+                new HashMap<String, Object>());
+        session.setAttribute("lpessoas", lista);
+        return "pessoas/listar";
+    }
+
+    @RequestMapping("/novaPessoa")
+    public String novo() {
         return "pessoas/cadastroPessoa";
     }
 
     @RequestMapping("/cadastrarConta")
     public String cadastroConta(HttpSession session) {
-        Pessoa p = (Pessoa) session.getAttribute("usuarioLogado");
-        List<Pessoa> pessoas = new ArrayList<Pessoa>();
-        pessoas.add(p);
-        session.setAttribute("pessoas", pessoas);
         return "contas/cadastroConta";
+    }
+
+    @RequestMapping("/listarContas")
+    public String listarContas(HttpSession session) {
+        Pessoa p = (Pessoa) session.getAttribute("usuarioLogado");
+        HashMap<String, Object> par = new HashMap<String, Object>();
+        par.put("pessoa", p);
+        List<Conta> lista = DaoGenerico.getInstance()
+                .listar("Select c from br.com.adrianob.modelo.Conta c where c.titular = :pessoa",
+                        par
+                );
+        session.setAttribute("lcontas", lista);
+        return "contas/listar";
     }
 
     @RequestMapping("/salvarAlguem")
@@ -44,9 +67,8 @@ public class MeuController {
 
     @RequestMapping(value = "/salvarConta")
     public String salvandoUmaConta(HttpSession s, HttpServletRequest r, Conta c) {
-        int idx = Integer.parseInt(r.getParameter("titular_id"));
-        ArrayList<Pessoa> lst = (ArrayList<Pessoa>) s.getAttribute("pessoas");
-        c.setTitular(lst.get(idx));
+        Pessoa p = (Pessoa) s.getAttribute("usuarioLogado");
+        c.setTitular(p);
         List<Conta> lista = new ArrayList<Conta>();
         lista.add(c);
         DaoGenerico.getInstance().salvarOuRemover(lista, DaoGenerico.SALVAR);

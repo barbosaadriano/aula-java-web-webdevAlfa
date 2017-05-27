@@ -53,7 +53,7 @@
                                 Cadastro Pessoa</a>
                         </li>
                         <li>
-                            <a href="cadastrarConta">
+                            <a href="listarContas">
                                 <i class="glyphicon glyphicon-credit-card"></i>&nbsp;
                                 Cadastro Conta</a>
                         </li>

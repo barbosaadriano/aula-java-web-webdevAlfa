@@ -25,16 +25,6 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <label>Titular: </label>
-                    <select class="form-control" name="titular_id"> 
-                        <c:forEach items="${sessionScope.pessoas}" var="item" varStatus="loop">
-                            <option value="${loop.index}">${item.nome}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4">
                     <label for="rg">Saldo: </label>
                     <input class="form-control" type="text" name="saldo" value="0.0" readonly="readonly"> 
