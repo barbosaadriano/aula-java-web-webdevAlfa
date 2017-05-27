@@ -5,9 +5,13 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        Transação efetuada
-        Seu novo saldo é <fmt:formatNumber value="${sessionScope.conta.saldo}"
-                          type="currency"/>
+        <div class="alert alert-success">
+            <h1>Transação efetuada</h1>
+            <h3>
+                Seu novo saldo é <fmt:formatNumber value="${sessionScope.conta.saldo}"
+                                  type="currency"/>
+            </h3>
+        </div>
     </div>
 </div>
 <%@include file="../footer.jsp" %>

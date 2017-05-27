@@ -83,6 +83,6 @@ public class MeuController {
         DaoGenerico.getInstance().salvarOuRemover(lista, DaoGenerico.SALVAR);
         DaoGenerico.getInstance().closeEm();
         s.setAttribute("conta", c);
-        return "contas/salvo";
+        return "pessoas/salvo";
     }
 }
