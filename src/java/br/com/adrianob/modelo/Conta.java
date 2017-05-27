@@ -1,6 +1,7 @@
 package br.com.adrianob.modelo;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

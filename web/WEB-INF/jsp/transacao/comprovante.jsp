@@ -1,23 +1,13 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file="../bootstrap.jsp" %>
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="jumbotron">
-                <h1>LanÃ§amento</h1>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    TransaÃ§Ã£o efetuada
-                    Seu novo saldo Ã© ${sessionScope.conta.saldo}
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@include file="../header.jsp" %>
+<div class="jumbotron">
+    <h1>Lançamento</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        Transação efetuada
+        Seu novo saldo é <fmt:formatNumber value="${sessionScope.conta.saldo}"
+                          type="currency"/>
+    </div>
+</div>
+<%@include file="../footer.jsp" %>

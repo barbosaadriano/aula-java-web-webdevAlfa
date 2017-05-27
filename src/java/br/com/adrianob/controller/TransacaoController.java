@@ -91,6 +91,7 @@ public class TransacaoController {
         par.put("conta", conta);
         List<Transacao> transacoes = DaoGenerico.getInstance().listar(sql.toString(), par);
         s.setAttribute("textrato", transacoes);
+        s.setAttribute("contaa", conta);
         return "transacao/extrato";
     }
 }
