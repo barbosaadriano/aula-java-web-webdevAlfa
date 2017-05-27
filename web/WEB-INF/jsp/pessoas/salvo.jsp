@@ -1,3 +1,5 @@
 <%@include file="../header.jsp" %>
-<h1>Olá ${pessoa.nome} ${pessoa.sobrenome}, obrigado por efetuar o cadastro!</h1>
+<div class="alert alert-success">
+    <h1>Registro salvo com sucesso!</h1>
+</div>
 <%@include file="../footer.jsp" %>

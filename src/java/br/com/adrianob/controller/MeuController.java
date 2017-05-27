@@ -9,7 +9,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MeuController {
@@ -31,7 +33,13 @@ public class MeuController {
         session.setAttribute("lpessoas", lista);
         return "pessoas/listar";
     }
-
+    @RequestMapping(value = "/editarPessoa/{idx}", method = RequestMethod.GET)
+    public String editarPessoa(@PathVariable int idx, HttpSession session) {
+        List<Pessoa> lst = (List<Pessoa>) session.getAttribute("lpessoas");
+        Pessoa get = lst.get(idx);
+        session.setAttribute("pessEdit", get);
+        return "redirect:/novaPessoa";
+    }
     @RequestMapping("/novaPessoa")
     public String novo() {
         return "pessoas/cadastroPessoa";
@@ -54,6 +62,7 @@ public class MeuController {
         session.setAttribute("lcontas", lista);
         return "contas/listar";
     }
+  
 
     @RequestMapping("/salvarAlguem")
     public String salvarPessoa(HttpSession session, Pessoa p) {

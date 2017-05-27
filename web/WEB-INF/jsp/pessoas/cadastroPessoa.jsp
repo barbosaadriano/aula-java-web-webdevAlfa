@@ -17,8 +17,14 @@
         <hr/>
         <div class="row">
             <div class="col-md-6">
+                <input type="hidden" name="id" <c:if test="${sessionScope.pessEdit!=null}">
+                           value="${sessionScope.pessEdit.id}"
+                       </c:if>>
                 <label for="nome">Nome: </label>
-                <input class="form-control" type="text" name="nome">
+                <input class="form-control" type="text" name="nome"
+                       <c:if test="${sessionScope.pessEdit!=null}">
+                           value="${sessionScope.pessEdit.nome}"
+                       </c:if>>
             </div>
             <div class="col-md-4">
                 <label for="sobrenome">Sobrenome: </label>
@@ -121,11 +127,17 @@
         <div class="row">
             <div class="col-md-3">
                 <label for="login">Login de usuário: </label>
-                <input class="form-control" type="text" name="login">
+                <input class="form-control" type="text" name="login"
+                       <c:if test="${sessionScope.pessEdit!=null}">
+                           value="${sessionScope.pessEdit.login}"
+                       </c:if>>
             </div>
             <div class="col-md-3">
                 <label for="pass">Senha: </label>
-                <input class="form-control" type="password" name="senha">
+                <input class="form-control" type="password" name="senha"
+                       <c:if test="${sessionScope.pessEdit!=null}">
+                           value="${sessionScope.pessEdit.senha}"
+                       </c:if>>
             </div>
             <div class="col-md-3">
                 <label for="passconfirm">Confirme a senha: </label>
