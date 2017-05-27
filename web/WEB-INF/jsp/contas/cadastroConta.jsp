@@ -7,14 +7,6 @@
 
     <form action="salvarConta" method="POST">
         <fieldset>
-            <div class="row"> 
-                <div class="col-md-2">
-                    <input  class="btn btn-primary btn-block btn-lg" type="submit">
-                </div>
-                <div class="col-md-2">
-                    <input  class="btn btn-warning btn-block btn-lg" type="reset" value="Limpar">
-                </div><div class="clearfix"></div>
-            </div>
             <div class="row">
                 <div class="col-md-6">
                     <label for="nome">Número: </label>

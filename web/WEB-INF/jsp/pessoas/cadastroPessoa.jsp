@@ -14,6 +14,7 @@
                 <input  class="btn btn-warning btn-block btn-lg" type="reset" value="Limpar">
             </div><div class="clearfix"></div>
         </div>
+        <hr/>
         <div class="row">
             <div class="col-md-6">
                 <label for="nome">Nome: </label>
